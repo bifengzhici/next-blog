@@ -16,5 +16,9 @@ jobs:
           script: |
             cd /var/next-blog
             git pull origin main
+            # 停止并删除之前的容器
+            docker stop next-blog || true
+            docker rm next-blog || true
             docker build -t next-blog .
+            # 运行新的容器
             docker run -d -p 80:3000 next-blog
