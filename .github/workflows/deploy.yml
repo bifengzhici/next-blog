@@ -22,9 +22,9 @@ jobs:
             docker rm -f next-blog 2>/dev/null || true 
 
             echo ">>> 开始构建新镜像..."
-            docker build --rm --no-cache -t next-blog:$(date +%s) -t next-blog:latest .
+            docker build --rm -t next-blog:$(date +%s) -t next-blog:latest .
 
             echo ">>> 执行镜像垃圾回收..."
             docker image prune -f --filter "until=24h" --filter "label=stage=builder"
 
-            docker run -d -p 80:3000 next-blog
+            docker run --name next-blog -d -p 80:3000 next-blog
