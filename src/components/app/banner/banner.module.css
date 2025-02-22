@@ -1,0 +1,108 @@
+.bannerGrid {
+  --mountains-height: 140px;
+  display: grid;
+  justify-content: center;
+  place-items: center;
+  grid-template-rows: 1px 70px 1px 40px 1px 50px 1px 100px 1px 85px 1px var(--mountains-height) 1px;
+  grid-template-columns: 20px 1px 40px 1px 1fr 1px 40px 1px 20px;
+  grid-template-areas: ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . introducing introducing introducing introducing introducing . ."
+    ". . . . . . . . ."
+    ". . logo logo logo logo logo . ."
+    ". . . . . . . . ."
+    ". . headline headline headline headline headline . ."
+    ". . . . . . . . ."
+    ". . mountains mountains mountains mountains mountains . ."
+    ". . . . . . . . ."
+  ;
+
+  @media (min-width: theme("screens.sm")) {
+    --mountains-height: 160px;
+    grid-template-rows: 1px 85px 1px 70px 1px 70px 1px 135px 1px 85px 1px var(--mountains-height) 1px;
+    grid-template-columns: 1fr 1px 70px 1px 70px 1px 70px 1px 370px 1px 70px 1px 70px 1px 70px 1px 1fr;
+    grid-template-areas:
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . cross-1 . introducing introducing introducing introducing introducing . cross-2 . . . ."
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . . . logo logo logo logo logo . . . . . ."
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . . . headline headline headline headline headline . . . . . ."
+      ". . . . . . . . . . . . . . . . ."
+      ". . . . . . mountains mountains mountains mountains mountains . . . . . ."
+      ". . . . . . . . . . . . . . . . ."
+    ;
+  }
+
+  @media (min-width: theme("screens.md")) {
+    --mountains-height: 180px;
+  }
+
+  @media (min-width: theme("screens.lg")) {
+    --mountains-height: 200px;
+  }
+
+  @media (min-width: theme("screens.xl")) {
+    --mountains-height: 220px;
+  }
+
+  @media (min-width: theme("screens.2xl")) {
+    --mountains-height: 240px;
+  }
+}
+
+.hLineGrid {
+  display: grid;
+  grid-template-rows: inherit;
+  grid-template-areas:
+    "."
+    "."
+    "h-line-1"
+    "."
+    "h-line-2"
+    "."
+    "h-line-3"
+    "."
+    "h-line-4"
+    "."
+    "h-line-5"
+    "."
+    "h-line-6"
+    "."
+    ".";
+}
+
+.vLineGrid {
+  display: grid;
+  grid-template-rows: inherit;
+  grid-template-columns: inherit;
+  grid-template-areas:
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". v-line-1 . . . . . v-line-2 ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . . . . . . ."
+    ". . . v-line-3 . v-line-4 . . ."
+  ;
+
+  @media (min-width: theme("screens.sm")) {
+    grid-template-rows: unset;
+    place-content: inherit;
+    grid-template-areas:
+      ". . . v-line-1 . v-line-2 . . . . . v-line-3 . v-line-4 . . ."
+    ;
+  }
+}
