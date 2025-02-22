@@ -16,9 +16,22 @@ jobs:
           script: |
             cd /var/next-blog
             git pull origin main
-            # 停止并删除之前的容器
-            docker stop next-blog || true
-            docker rm next-blog || true
-            docker build -t next-blog .
-            # 运行新的容器
+
+            echo ">>> 停止并移除旧容器..."
+            docker stop next-blog --time 0 2>/dev/null || echo "旧容器不存在"
+            docker rm -f next-blog 2>/dev/null || true 
+
+            echo ">>> 开始构建新镜像..."
+            docker build \ 
+                --rm \            # 构建后删除中间容器 
+                --no-cache \      # 避免缓存污染（可选）
+                -t next-blog:$(date +%s) \  # 时间戳标签 
+                -t next-blog:latest \       # 持久化标签 
+                .
+
+            echo ">>> 执行镜像垃圾回收..."
+            docker image prune -f \         # 删除悬空镜像 
+                --filter "until=24h" \      # 保留24小时内镜像 
+                --filter "label=stage=builder"  # 按标签过滤 
+
             docker run -d -p 80:3000 next-blog
