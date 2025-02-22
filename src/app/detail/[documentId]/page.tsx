@@ -81,7 +81,7 @@ export default async function Page({
 
     return (
         <div className="py-24">
-            <div className='text-xl sm:text-2xl md:text-3xl lg:text-4xl my-4 font-bold text-center'>{blogDetail[0].title}</div>
+            <div className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl my-8 font-bold text-center'>{blogDetail[0].title}</div>
             <Markdown components={components} className='container mx-auto px-4'>{blogDetail[0].blocks[0]?.body}</Markdown>
         </div>
     )
