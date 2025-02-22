@@ -22,16 +22,9 @@ jobs:
             docker rm -f next-blog 2>/dev/null || true 
 
             echo ">>> 开始构建新镜像..."
-            docker build \ 
-                --rm \            # 构建后删除中间容器 
-                --no-cache \      # 避免缓存污染（可选）
-                -t next-blog:$(date +%s) \  # 时间戳标签 
-                -t next-blog:latest \       # 持久化标签 
-                .
+            docker build --rm --no-cache -t next-blog:$(date +%s) -t next-blog:latest .
 
             echo ">>> 执行镜像垃圾回收..."
-            docker image prune -f \         # 删除悬空镜像 
-                --filter "until=24h" \      # 保留24小时内镜像 
-                --filter "label=stage=builder"  # 按标签过滤 
+            docker image prune -f --filter "until=24h" --filter "label=stage=builder"
 
             docker run -d -p 80:3000 next-blog
