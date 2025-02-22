@@ -144,8 +144,8 @@ const Headline = () => {
     return (
         <SpotOutlineBox className="relative [grid-area:headline] w-full h-full mt-[-1.5px] z-30">
             <motion.h2 variants={headline} initial="hidden" animate="visible" className="w-full h-full p-[6px] flex flex-col justify-center items-center text-base sm:text-lg md:text-xl">
-                <GradientText text="这是一个博客，" />
-                <GradientText text="来自一个不知名路人。" />
+                <GradientText text="这是一个博客" />
+                <GradientText text="来自一个不知名路人" />
             </motion.h2>
         </SpotOutlineBox>
     )
