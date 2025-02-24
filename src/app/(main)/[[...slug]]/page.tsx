@@ -9,7 +9,8 @@ export default async function Page(props: {
 }) {
     const params = await props.params
     const searchParams = await props.searchParams
-    const category = params.slug?.[0]
+    const category = decodeURIComponent(params.slug?.[0] || '')
+
     const { search, sort } = searchParams
 
     const blogList = await fetchBlogList({ category, search, sort })
@@ -27,12 +28,13 @@ async function fetchBlogList({ category, search, sort }: BlogRouteParams & BlogS
             }),
             ...(search && {
                 $or: [
-                    { title: { $containsi: search } }
+                    { title: { $containsi: search } },
+                    { category: { name: { $containsi: search } } }
                 ]
             })
         },
-        sort: sort === 'hot' ? ['views:desc'] : ['createdAt:desc'],
-        populate: ['cover'],
+        sort: sort === 'hot' ? ['view:desc'] : ['createdAt:desc'],
+        populate: ['category', 'cover'],
     }, { encodeValuesOnly: true });
 
     const res = await appFetch(`/articles?${query}`)

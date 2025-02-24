@@ -42,7 +42,7 @@ const Catrgory: React.FC<CategoryProps> = ({
     const allList = [{ name: '' }, ...list]
 
     function isActive(name: string) {
-        const category = slug?.[0] || ''
+        const category = decodeURIComponent(slug?.[0] || '')
         return category.toLocaleLowerCase() === name.toLocaleLowerCase()
     }
 

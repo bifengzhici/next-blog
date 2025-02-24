@@ -4,6 +4,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { BlogItem } from "@/types/blog";
 import { skeleton } from "@/lib/utils";
 import Link from "next/link";
+import { STRAPI_URL } from "@/lib/request";
 
 interface BlogProps {
     list: BlogItem[]
@@ -30,7 +31,7 @@ export const Blog: React.FC<BlogProps> = ({
                                 <div className="w-full aspect-[1.8] relative">
                                     <Image
                                         className="object-cover"
-                                        src={process.env.STRAPI_URL + item.cover.url}
+                                        src={`${STRAPI_URL}${item.cover.url}`}
                                         alt={item.title}
                                         fill
                                         placeholder={skeleton}
