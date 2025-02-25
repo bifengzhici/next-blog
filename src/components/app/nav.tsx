@@ -53,7 +53,7 @@ const Catrgory: React.FC<CategoryProps> = ({
                     <li key={item.name}>
                         <Link href={{ pathname: `/${item.name}`, query }}
                             className={cn(
-                                'px-2 py-1 rounded-md hover:bg-neutral-50 hover:text-neutral-950 transition-colors',
+                                'px-2 py-1 rounded-md hover:bg-neutral-50 hover:text-neutral-950 transition-colors whitespace-nowrap',
                                 isActive(item.name) && 'bg-neutral-50 text-neutral-950'
                             )}>
                             {item.name === '' ? 'Discover' : item.name}
